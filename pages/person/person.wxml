@@ -1,0 +1,7 @@
+<!-- person.wxml -->
+<view class="container">
+  <image class="banner" src="../../pages/images/test1.png"></image>
+  <view class="account style">当前账号：12345</view>
+  <view class="my_application style">我的申请</view>
+  <view class="log_out style">退出登录</view>
+</view>

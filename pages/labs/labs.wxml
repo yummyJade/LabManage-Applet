@@ -1,0 +1,47 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="search_instrument_wrap">
+    <label class="search_instrument_inner">
+       <input class="search_instrument_input" placeholder="请输入搜索内容"></input>
+       <image src="../../pages/images/search_button.png"></image>
+    </label>
+
+   
+    <!-- </button> -->
+  </view>
+  <checkbox-group bindchange="instrumentboxChange">
+    <!-- <label class="checkbox" wx:for="{{array}}"> -->
+      <view wx:for="{{array}}">
+        <view class="instrument_list" data-index="{{index}}">
+        
+        <view class="instrument_list_item">
+          <view class='checkbox_wrap'>
+            <checkbox value="{{item.title}}" checked="{{item.checked}}" />
+          </view>
+          <view class="instrument_list_item_text">
+            <text class="title">{{item.title}}</text>
+            <text class="description">{{item.description}}</text>
+          </view>
+          <!-- <view class="check_text">
+            前往预约
+          </view> -->
+          <view class="amount_wrap">
+            <view class='left_arrow' bindtap='leftArrowHandle' data-index="{{index}}">
+              <image src="../../pages/images/left_arrow2.png" mode='widthFix'></image>
+            </view>
+            <input value="{{item.num}}"></input>
+            <view class='right_arrow' bindtap='rightArrowHandle' data-index="{{index}}">
+              <image src="../../pages/images/right_arrow2.png" mode='widthFix'></image>
+            </view>
+          </view>
+          <!-- <image src="../../pages/images/appointment_logo.png"></image> -->
+        </view>
+      </view>
+      </view>
+    <!-- </label> -->
+    
+  </checkbox-group>  
+   
+    <!-- buttons -->
+    <button bindtap='chooseInstruments'>选择仪器</button>
+</view>

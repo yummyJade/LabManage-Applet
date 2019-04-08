@@ -1,0 +1,26 @@
+/* pages/person/person.wxss */
+page{
+ background-color: #F5F6F8;
+}
+.container{
+ /* min-height: 100vh; */
+ padding: 0;
+ 
+}
+.banner{
+  width: 750rpx;
+  height: 500rpx;
+}
+.style{
+  width: calc(750rpx - 24px);
+  height: 50px;
+  line-height: 50px;
+  background-color: white;
+  padding-left: 24px;
+  margin-top: 10px;
+}
+.log_out{
+  margin-top: 32px;
+  text-align: center;
+  padding: 0;
+}

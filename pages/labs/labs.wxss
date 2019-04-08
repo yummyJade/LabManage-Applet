@@ -1,0 +1,121 @@
+/* pages/labs/labs.wxss */
+/**index.wxss**/
+.container{
+  display: block;
+}
+page{
+ background-color: #F5F6F8;
+}
+button{
+  padding: 0px;
+}
+.search_instrument_wrap{
+  padding: 0px 30rpx 0px 30rpx;
+  position: relative;
+}
+.search_instrument_inner{
+  display: flex;
+  align-items: center;
+  height: 32px;
+  border-radius: 5rpx ;
+  padding: 0px 16rpx 0px 16rpx;
+  border: 1px solid #cccccc;
+
+}
+.search_instrument_input{
+  flex-grow: 1;
+  height: 32px;
+  line-height: 32px;
+  padding-left: 8rpx;
+  order: 2;
+
+}
+.search_instrument_wrap image{
+  display: block;
+  width:20px;
+  height: 20px;
+  order: 1;
+}
+
+.instrument_list{
+  padding: 40rpx 30rpx 0rpx 30rpx;
+  flex-grow: 1;
+}
+.instrument_list_item{
+
+
+  display: flex;
+  min-height: 100%;
+  background-color: white;
+  border-radius: 4rpx;
+  padding: 30rpx;
+
+  align-items:center;
+  transition:opacity .3s;
+
+  
+}
+.instrument_list_item_text
+{
+ 
+  flex: 1;
+}
+.instrument_list_item .title
+{
+  display: block;
+  font-family:SimHei;
+  font-size:32rpx;
+}
+.instrument_list_item .description
+{
+  display: block;
+  font-family:SimHei;
+  font-size:28rpx;
+  color:#757373;
+
+}
+.check_text
+{
+ font-family:SimHei;
+  font-size:28rpx;
+  color:dodgerblue;
+}
+.instrument_list image
+{
+  margin-left:5px;
+  width:14px;
+  height:14px;
+
+}
+.instrument_list .amount_wrap{
+  display: flex;
+}
+.instrument_list .amount_wrap input{
+  width:100rpx;
+  text-align: center;
+}
+.checkbox{
+  /* display: flex;
+  align-content: center;
+  justify-content: center; */
+  
+}
+checkbox{
+  display: block;
+
+  vertical-align: middle;
+  /* margin-top: 36px; */
+
+ 
+}
+.checkbox_wrap{
+  /* width: 30px; */
+  margin-right: 8rpx;
+}
+
+.right_arrow image{
+  width: 48rpx;
+}
+.left_arrow image{
+  width: 48rpx;
+}

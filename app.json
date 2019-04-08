@@ -1,0 +1,38 @@
+{
+  "pages":[
+  
+   "pages/labs/labs",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/person/person",
+    
+    "pages/appointForm/appointForm"
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "实验室管理系统",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "backgroundColor":"#ffffff",
+    "color":"#e6e6e6",
+    "selectedColor":"#666666",
+    "list":[
+      {
+        "pagePath":"pages/index/index",
+        "text":"首页",
+        "iconPath":"pages/images/index1.png",
+        "selectedIconPath": "pages/images/index2.png"
+      },
+      {
+        "pagePath":"pages/person/person",
+        "text":"个人中心",
+        "iconPath": "pages/images/person1.png",
+        "selectedIconPath": "pages/images/person2.png"
+      }
+    ]
+  }
+
+}
