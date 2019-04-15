@@ -1,4 +1,4 @@
-// pages/labs/labs.js
+// pages/instruwithid/instruwithid.js
 let page = 1;
 let ip = 'http://47.100.178.113:3389';
 Page({
@@ -8,10 +8,10 @@ Page({
    */
   data: {
     CheckSum: 0,
-    instrumentName:"",
-    IsSearchData:true,
+    instrumentName: "",
+    IsSearchData: true,
     array: [
-  
+
 
     ],
     IsChecked: [
@@ -19,50 +19,12 @@ Page({
     ]
 
   },
-  leftArrowHandle:function(e){
-    let index = e.currentTarget.dataset.index;
-    let nownum = this.data.array[index].num;
-    let array = this.data.array;
-    let temp = "array[" + index + "].num";
-    //判断是否大于0
-    if(nownum > 1){
-      this.setData ({
-        [temp]: nownum - 1,
-      
-      })
-    }
-  
 
-  },
-  rightArrowHandle: function (e) {
-    let index = e.currentTarget.dataset.index;
-    let nownum = this.data.array[index].num;
-    let array = this.data.array;
-    let temp = "array[" + index + "].num";
-    
-    //判断是否大于0
-   
-      this.setData ({
-        [temp] : nownum + 1,
-      
-    })
-    
-
-
-  },
-  instrumentClick: function () {
-    wx.navigateTo({
-      url: '../appointForm/appointForm',
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
-  },
-  getInstrumentList: function ({ head_id, number }){
+  getInstrumentList: function ({ id }) {
     let that = this;
     //初始化实验室情况
     wx.request({
-      url: ip + '/user/InstrumentList?head_id=' + head_id + '&' + 'number=' + number, // 仅为示例，并非真实的接口地址
+      url: ip + '/user/InstrumentList?id=' + id, // 仅为示例，并非真实的接口地址
       data: {
 
       },
@@ -77,7 +39,7 @@ Page({
           title: '玩命加载中',
         })
 
-  
+
         let result;
         for (let i = 0, len = res.data.result.length; i < len; i++) {
           result = res.data.result[i];
@@ -120,8 +82,6 @@ Page({
 
     //初始化实验室情况
     let obj = {
-      head_id: head_id,
-      number: number,
       id: id
     }
     this.getInstrumentList(obj);
@@ -156,7 +116,7 @@ Page({
           let len;
           let result;
           len = res.data.result.length;
-     
+
           wx.showLoading({
             title: '玩命加载中',
           })
@@ -172,25 +132,25 @@ Page({
               "type": result.type,
               "lab_id": result.lab_id,
               "is_lend": result.is_lend,
-              "checked":false
+              "checked": false
             }
             array_list.push(obj);
           }
 
-          if(len == 0){
+          if (len == 0) {
             that.setData({
-              IsSearchData:false
+              IsSearchData: false
             })
-          }else{
+          } else {
             that.setData({
-              IsSearchData:true
+              IsSearchData: true
             })
           }
           console.log(that.data.IsSearchData);
           // 设置数据
           that.setData({
             array: array_list
-           
+
           })
 
           // 隐藏加载框
@@ -200,11 +160,11 @@ Page({
     })
 
   },
-  chooseInstruments: function(){
-   
+  chooseInstruments: function () {
+
     let array = this.data.array;
     let sum = this.data.CheckSum;
-    if(sum == 0){
+    if (sum == 0) {
 
       wx.showToast({
         title: '您还未选择任何选项!',
@@ -213,24 +173,24 @@ Page({
       })
       return;
 
-    }else{
+    } else {
       let Ischecked = [];
       for (let i = 0, m = array.length; i < m; i++) {
         if (array[i].checked) {
           Ischecked.push(array[i].id);
-       
+
         }
       }
       console.log(Ischecked)
       let str = JSON.stringify(Ischecked);
-  
+
       wx.navigateTo({
-        url: '../appointForm/appointForm?id='+ str,
+        url: '../appointForm/appointForm?id=' + str,
       })
     }
-    
+
   },
-  instrumentboxChange: function(e){
+  instrumentboxChange: function (e) {
 
     let that = this;
     let values = e.detail.value;
@@ -239,9 +199,9 @@ Page({
       order[i].checked = false;
     }
     this.setData({
-      CheckSum:0
+      CheckSum: 0
     })
-    for(let i = 0, m = values.length; i < m; i++){
+    for (let i = 0, m = values.length; i < m; i++) {
       let value = values[i] - 1;
       order[value].checked = true;
       let temp = this.data.CheckSum + 1
@@ -253,7 +213,7 @@ Page({
     // console.log(this.data.array);
 
 
-      
+
 
 
   },
@@ -290,34 +250,34 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    page = 1;
-    //前面都是什么
-    let number = 5;
-    let head_id = (page - 1) * number + 0;
+    // page = 1;
+    // //前面都是什么
+    // let number = 5;
+    // let head_id = (page - 1) * number + 0;
 
-    //初始化实验室情况
-    let obj = {
-      head_id: head_id,
-      number: number
-    }
-    this.getInstrumentList(obj);
+    // //初始化实验室情况
+    // let obj = {
+    //   head_id: head_id,
+    //   number: number
+    // }
+    // this.getInstrumentList(obj);
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    page = page + 1;
-    let number = 5;
-    let head_id = (page - 1) * number + 0;
-    // let that = this;
+    // page = page + 1;
+    // let number = 5;
+    // let head_id = (page - 1) * number + 0;
+    // // let that = this;
 
-    //初始化实验室情况
-    let obj = {
-      head_id: head_id,
-      number: number
-    }
-    this.getInstrumentList(obj);
+    // //初始化实验室情况
+    // let obj = {
+    //   head_id: head_id,
+    //   number: number
+    // }
+    // this.getInstrumentList(obj);
   },
 
   /**

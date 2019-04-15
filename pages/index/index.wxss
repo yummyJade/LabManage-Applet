@@ -1,86 +1,22 @@
 /**index.wxss**/
 .container{
-  display: block;
+
 }
 page{
- background-color: #F5F6F8;
+  background-color: #F5F6F8;
 }
-button{
-  padding: 0px;
-}
-.search_lab_wrap{
-  padding: 0px 30rpx 0px 30rpx;
-  position: relative;
-}
-.search_lab_inner{
-  display: flex;
-  align-items: center;
-  height: 32px;
-  border-radius: 5rpx ;
-  padding: 0px 16rpx 0px 16rpx;
-  border: 1px solid #cccccc;
-
-}
-.search_lab_input{
-  flex-grow: 1;
-  height: 32px;
-  line-height: 32px;
-  padding-left: 8rpx;
-  order: 2;
-
-}
-.search_lab_wrap image{
-  display: block;
-  width:20px;
-  height: 20px;
-  order: 1;
-}
-
-.lab_list{
-  padding: 40rpx 30rpx 0rpx 30rpx;
-}
-.lab_list_item{
-
-
-  display: flex;
-  min-height: 100%;
-  background-color: white;
-  border-radius: 4rpx;
-  padding: 30rpx;
-
-  align-items:center;
-  transition:opacity .3s;
-
+.mainer{
   
 }
-.lab_list_item_text
-{
-  flex: 1;
-}
-.lab_list_item .title
-{
-  display: block;
-  font-family:SimHei;
-  font-size:32rpx;
-}
-.lab_list_item .description
-{
-  display: block;
-  font-family:SimHei;
-  font-size:28rpx;
-  color:#757373;
+.section {
+  width: 400rpx;
+  height: 200rpx;
+  margin-top: 40px;
+  /* margin:60rpx 60rpx 60rpx 60rpx; */
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 }
-.check_text
-{
- font-family:SimHei;
-  font-size:28rpx;
-  color:dodgerblue;
-}
-.lab_list image
-{
-  margin-left:5px;
-  width:14px;
-  height:14px;
 
-}

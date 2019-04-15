@@ -1,21 +1,25 @@
 <!--pages/appointForm/appointForm.wxml-->
 <form bindsubmit="formSubmit" bindreset="formReset">
   <view class="section">
-  <view class="section__title">申请人</view>
-    <input name="input" placeholder="例：小明" />
+  <view class="section__title" >申请人</view>
+    <input name="input" placeholder="例：小明" bindinput="handleNameChange" name="name"/>
   </view>
   <view class="section">
-    <view class="section__title">联系方式</view>
-    <input name="input" placeholder="例：12345" />
+    <view class="section__title" >联系方式</view>
+    <input name="input" placeholder="例：example@126.com" bindinput="handleChatChange" name="email" />
   </view>
-  <view class="section">
-    <view class="section_title">申请理由</view>
+    <view class="section">
+    <view class="section__title" >申请标题</view>
+    <input name="input" bindinput="handleTitleChange" name="verifytitle"/>
+  </view>
+  <view class="section" >
+    <view class="" bindinput="handleReasonChange" name="verifycontent" >申请理由</view>
     <textarea>
     </textarea>
   </view>
   
 
   <view class="btn-area">
-    <button form-type="submit">Submit</button>
+    <button form-type="submit" >Submit</button>
   </view>
 </form>

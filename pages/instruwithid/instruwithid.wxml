@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--pages/instruwithid/instruwithid.wxml-->
 <view class="container">
   <view class="search_instrument_wrap">
     <label class="search_instrument_inner">
@@ -37,7 +37,7 @@
            
             <text wx:if="{{item.is_lend}}" class='block rentstatus_ok'>状态：可租借</text>
             <text wx:if="{{!item.is_lend}}" class='block rentstatus_nok'>状态：不可租借</text>
-            <!-- <text wx:if="{{item.is_lend}}" class='block'> 前往租借</text> -->
+            <text wx:if="{{item.is_lend}}" class='block'> 前往租借</text>
            
           </view>
           <!-- <view class="amount_wrap">

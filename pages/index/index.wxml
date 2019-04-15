@@ -1,27 +1,9 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="search_lab_wrap">
-    <label class="search_lab_inner">
-       <input class="search_lab_input" placeholder="请输入搜索内容"></input>
-       <image src="../../pages/images/search_button.png"></image>
-    </label>
-
-   
-    <!-- </button> -->
-  </view>
-      
-    <view wx:for="{{array}}">
-      <view class="lab_list" bindtap="labClick">
-        <view class="lab_list_item">
-          <view class="lab_list_item_text">
-            <text class="title">{{item.title}}</text>
-            <text class="description">{{item.description}}</text>
-          </view>
-          <view class="check_text">
-            前往查看
-          </view>
-          <image src="../../pages/images/lab_logo.png"></image>
-        </view>
-      </view>
-    </view>
+<view class='container'>
+  <!-- <view class='mainer'> -->
+    <view class='section' bindtap='handleSchoolClick'>搜索学院</view>
+    <view class='section' bindtap='handleLabClick'>搜索实验室</view>
+    <view class='section' bindtap='handleInstrumentClick'>搜索仪器</view>
+  <!-- </view> -->
+  
 </view>

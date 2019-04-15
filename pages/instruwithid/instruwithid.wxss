@@ -1,5 +1,4 @@
-/* pages/labs/labs.wxss */
-/**index.wxss**/
+/* pages/instruwithid/instruwithid.wxss */
 .container{
   display: block;
 }

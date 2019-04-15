@@ -1,5 +1,5 @@
-/* pages/labs/labs.wxss */
-/**index.wxss**/
+/* pages/schools/schools.wxss */
+
 .container{
   display: block;
 }
@@ -9,11 +9,11 @@ page{
 button{
   padding: 0px;
 }
-.search_instrument_wrap{
+.search_lab_wrap{
   padding: 0px 30rpx 0px 30rpx;
   position: relative;
 }
-.search_instrument_inner{
+.search_lab_inner{
   display: flex;
   align-items: center;
   height: 32px;
@@ -22,7 +22,7 @@ button{
   border: 1px solid #cccccc;
 
 }
-.search_instrument_input{
+.search_lab_input{
   flex-grow: 1;
   height: 32px;
   line-height: 32px;
@@ -30,18 +30,17 @@ button{
   order: 2;
 
 }
-.search_instrument_wrap image{
+.search_lab_wrap image{
   display: block;
   width:20px;
   height: 20px;
   order: 1;
 }
 
-.instrument_list{
+.lab_list{
   padding: 40rpx 30rpx 0rpx 30rpx;
-  flex-grow: 1;
 }
-.instrument_list_item{
+.lab_list_item{
 
 
   display: flex;
@@ -55,18 +54,17 @@ button{
 
   
 }
-.instrument_list_item_text
+.lab_list_item_text
 {
- 
   flex: 1;
 }
-.instrument_list_item .title
+.lab_list_item .title
 {
   display: block;
   font-family:SimHei;
   font-size:32rpx;
 }
-.instrument_list_item .description
+.lab_list_item .description
 {
   display: block;
   font-family:SimHei;
@@ -80,58 +78,12 @@ button{
   font-size:28rpx;
   color:dodgerblue;
 }
-.instrument_list image
+.lab_list image
 {
   margin-left:5px;
   width:14px;
   height:14px;
 
-}
-.instrument_list .amount_wrap{
-  display: flex;
-}
-.instrument_list .amount_wrap input{
-  width:100rpx;
-  text-align: center;
-}
-.checkbox{
-  /* display: flex;
-  align-content: center;
-  justify-content: center; */
-  
-}
-checkbox{
-  display: block;
-
-  vertical-align: middle;
-  /* margin-top: 36px; */
-
- 
-}
-.checkbox_wrap{
-  /* width: 30px; */
-  margin-right: 8rpx;
-}
-
-.right_arrow image{
-  width: 48rpx;
-}
-.left_arrow image{
-  width: 48rpx;
-}
-
-.block{
-  display: block;
-}
-.rentstatus_ok{
-  color: green;
-}
-.rentstatus_nok{
-  color: red;
-}
-
-.none{
-  display: none;
 }
 
 .nodata{
