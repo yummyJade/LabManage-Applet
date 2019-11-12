@@ -32,6 +32,9 @@ Page({
 
   //获取仪器列表
   getInstrumentList: function ({ page: page, id: id }){
+    wx.showLoading({
+      title: '玩命加载中',
+    })
     let that = this;
     //初始化实验室情况
     wx.request({
@@ -55,9 +58,7 @@ Page({
 
           let obj;
 
-          wx.showLoading({
-            title: '玩命加载中',
-          })
+          
 
 
           let result;
@@ -286,7 +287,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    console.log(this.data.array)
+    // console.log(this.data.array)
     this.setData({
       CheckSum:0
     })

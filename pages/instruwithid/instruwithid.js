@@ -31,6 +31,9 @@ Page({
   },
   //获取仪器列表 通过id
   getInstrumentListById: function ({ page: page, id: id }) {
+    wx.showLoading({
+      title: '玩命加载中',
+    })
     let that = this;
     //初始化实验室情况
     wx.request({
@@ -47,9 +50,7 @@ Page({
           let obj;
           let len = res.data.result.length;
 
-          wx.showLoading({
-            title: '玩命加载中',
-          })
+         
       
 
           let result;

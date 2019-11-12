@@ -46,15 +46,16 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        wx.showLoading({
+          title: '玩命加载中',
+        })
         if (res.data.statu == 1 && res.data.result.length != 0) {
           let array_list = [];
           let obj;
           let len;
           
        
-          wx.showLoading({
-            title: '玩命加载中',
-          })
+         
           
           for (let i = 0, len = res.data.result.length; i < len; i++) {
        

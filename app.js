@@ -22,7 +22,7 @@ App({
           // })
          
           this.globalData.code = res.code;
-          console.log("code"+res.code)
+          // console.log("code"+res.code)
         } else {
           console.log('登录失败！' + res.errMsg)
         }

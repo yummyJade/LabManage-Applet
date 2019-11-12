@@ -35,6 +35,9 @@ Page({
   },
   //搜索功能触发
   searchClick: function (e) {
+    wx.showLoading({
+      title: '玩命加载中',
+    })
     let that = this;
     let content = this.data.labName;
     //获得结果
@@ -53,9 +56,7 @@ Page({
           let len;
           len = res.data.result.length;
 
-          wx.showLoading({
-            title: '玩命加载中',
-          })
+         
 
           for (let i = 0; i < len; i++) {
             obj = {

@@ -58,11 +58,11 @@ Page({
       
         if(res.data.statu == 1){
           wx.hideLoading();
-          wx.showToast({
-            title: '预约提交成功!',
-            icon: 'none',
-            duration: 2000
-          })
+          // wx.showToast({
+          //   title: '预约提交成功!',
+          //   icon: 'none',
+          //   duration: 2000
+          // })
           
           let array3 = [];
           let promise = new Promise((resolve, reject) => {
@@ -99,21 +99,15 @@ Page({
             })
             
           })
-          .catch(() => {
-            wx.showToast({
-              title: '提交失败',
-              icon: 'none',
-              image: '',
-              duration: 0,
-              mask: true,
-              success: function(res) {},
-              fail: function(res) {},
-              complete: function(res) {},
-            })
-          })
+          
           
 
  
+        }else{
+          wx.showToast({
+            title: '预约失败',
+            icon:'none'
+          })
         }
       }
     })
