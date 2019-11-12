@@ -1,39 +1,36 @@
-// pages/labswithid/labswithid.js
+// pages/truelabs/truelabs.js
+// pages/truelabs/truelabs.js
 //获取应用实例
 const app = getApp()
 let page = 1;
-let ip = 'http://47.100.178.113:3389';
+let ip = app.globalData.ip;
 Page({
   data: {
     IsSearchData: true,
-    labName: "",
     array: [
-      {
-        title: "这是一个实验室",
-        description: "这还是一个实验室"
-      },
-      {
-        title: "这是一个实验室",
-        description: "这还是一个实验室"
-      }
+    ],
+    id: '',
+    inputdata: '',
+    IsAll: false
+  },
+  //点击弹出新窗口
+  toSearchPage: function (e) {
+    wx.navigateTo({
+      url: '../search/search?inputName=' + this.data.inputdata
+    })
 
-    ]
+    //有可能需要把现在输入框的内容再传递到搜索页
+
   },
   //事件处理函数
   labClick: function (e) {
     let id = e.currentTarget.dataset.id;
-    // console.log(id);
+    console.log(id);
     wx.navigateTo({
-      url: '../labs/labs?id=' + id,
+      url: '../instruwithid/instruwithid?id=' + id,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
-    })
-  },
-  //输入实验室名字触发
-  labInput: function (e) {
-    this.setData({
-      labName: e.detail.value
     })
   },
   //搜索功能触发
@@ -91,10 +88,11 @@ Page({
     })
 
   },
-  getLabList: function ({ head_id, number, id }) {
+  //获取实验室默认列表
+  getLabListById: function ({ page: page, id: id }) {
     let that = this;
     wx.request({
-      url: ip + '/user/LabList?head_id=' + head_id + '&' + 'number=' + number + '&id=' + id, // 仅为示例，并非真实的接口地址
+      url: ip + '/user/FindLabWithDepartmentId?page=' + page + '&id=' + id, // 仅为示例，并非真实的接口地址
       data: {
 
       },
@@ -105,18 +103,29 @@ Page({
         if (res.data.statu == 1) {
           let array_list = [];
           let obj;
-          let len;
+          let len = res.data.result.length;
           wx.showLoading({
             title: '玩命加载中',
           })
-          for (let i = 0, len = res.data.labs.length; i < len; i++) {
+          for (let i = 0 ; i < len; i++) {
             obj = {
-              id: res.data.labs[i].id,
-              title: res.data.labs[i].name,
-              description: res.data.labs[i].department_id
+              id: res.data.result[i].id,
+              title: res.data.result[i].name,
+              description: res.data.result[i].department_id
 
             }
             array_list.push(obj);
+          }
+          //无数据
+          
+          if (len == 0) {
+            that.setData({
+              IsSearchData: false
+            })
+          } else {
+            that.setData({
+              IsSearchData: true
+            })
           }
           // 设置数据
           that.setData({
@@ -125,24 +134,30 @@ Page({
           // 隐藏加载框
           wx.hideLoading();
 
-        }
+        } else if (res.data.statu == 0 && res.data.msg == "该页内容为空") {
+          that.setData({
+            page: that.data.page - 1,
+            IsAll: true
+          })
+       }
       }
     })
   },
   onLoad: function (configs) {
     let id = configs.id;
-
-
-    //前面都是什么
-    let number = 5;
-    let head_id = (page - 1) * number + 0;
-    //初始化实验室情况
-    let obj = {
-      head_id: head_id,
-      number: number,
+    this.setData({
       id: id
-    }
-    this.getLabList(obj);
+    })
+
+    //初始化实验室情况
+
+      let obj = {
+        page: page,
+        id: id
+      }
+      this.getLabListById(obj);
+    
+
 
 
 
@@ -155,36 +170,18 @@ Page({
 
   },
   onReachBottom: function () {
-    page = page + 1;
-    let number = 5;
-    let head_id = (page - 1) * number + 0;
-    // let that = this;
+    // page = page + 1;
 
-    //初始化实验室情况
-    let obj = {
-      head_id: head_id,
-      number: number
-    }
-    this.getLabList(obj);
+
+    // //初始化实验室情况
+    // let obj = {
+    //   page: page
+    // }
+    // this.getLabList(obj);
 
   },
 
   onPullDownRefresh: function () {
-    page = 1;
-    // wx.showToast({
-    //   title: '已经是最新啦',
-    //   icon: 'none',
-    //   duration: 2000
-    // })
-    let number = 5;
-    let head_id = (page - 1) * number + 0;
-
-    //初始化实验室情况
-    let obj = {
-      head_id: head_id,
-      number: number
-    }
-    this.getLabList(obj);
-
+    this.onLoad();
   }
 })

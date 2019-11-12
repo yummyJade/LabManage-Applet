@@ -88,4 +88,24 @@ button{
 .nodata{
   text-align: center;
   margin-top: 100rpx;
+  color:#757373;
+}
+.choosebutton{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #405F7F;
+  color: white;
+  
+  height:90rpx;
+  line-height:94rpx;
+  text-align:center;
+
+
+
+}
+
+.mainer{
+  margin-bottom: 118rpx;
 }

@@ -1,22 +1,43 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
+    "pages/appointForm/appointForm",
+    
+    "pages/successpage/successpage",
     "pages/labs/labs",
-
+    "pages/search/search",
     "pages/truelabs/truelabs",
     "pages/schools/schools",
     "pages/person/person",
-    "pages/appointForm/appointForm",
+   
     "pages/labswithid/labswithid",
-    "pages/instruwithid/instruwithid"
-    
+    "pages/instruwithid/instruwithid",
+    "pages/shoppingcart/shoppingcart"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#405F7F",
     "navigationBarTitleText": "实验室管理系统",
-    "navigationBarTextStyle":"black"
-  }
-  
-
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "color": "#e6e6e6",
+    "selectedColor": "#666666",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/images/index1.png",
+        "selectedIconPath": "pages/images/index2.png"
+      },
+      {
+        "pagePath": "pages/shoppingcart/shoppingcart",
+        "text": "购物车",
+        "iconPath": "pages/images/cart1.png",
+        "selectedIconPath": "pages/images/cart2.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
 }

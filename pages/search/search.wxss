@@ -1,10 +1,12 @@
-/* pages/labs/labs.wxss */
+/* pages/search/search.wxss */
+
 .container{
   display: block;
-  /* padding-bottom: 50rpx; */
+  padding-top: 50rpx;
 }
 page{
- background-color: #F5F6F8;
+ /* background-color: #F5F6F8; */
+ background-color: white;
 }
 button{
   padding: 0px;
@@ -137,30 +139,4 @@ checkbox{
 .nodata{
   text-align: center;
   margin-top: 100rpx;
-  color:#757373;
-}
-.hasAll{
-  text-align: center;
-  color:#757373;
-  margin-top:24rpx;
-
-}
-.choosebutton{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #405F7F;
-  color: white;
-  
-  height:90rpx;
-  line-height:94rpx;
-  text-align:center;
-
-
-
-}
-
-.mainer{
-  margin-bottom: 118rpx;
 }

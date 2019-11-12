@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 let page = 1;
-let ip = 'http://47.100.178.113:3389';
+let ip = app.globalData.ip;
 Page({
   data: {
    

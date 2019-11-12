@@ -1,10 +1,10 @@
 <!--pages/labswithid/labswithid.wxml-->
 <view class="container">
   <view class="search_lab_wrap">
-    <label class="search_lab_inner">
+    <!-- <label class="search_lab_inner">
        <input class="search_lab_input" placeholder="请输入搜索内容" bindconfirm="searchClick" bindinput='labInput'></input>
        <image src="../../pages/images/search_button.png"></image>
-    </label>
+    </label> -->
 
    
     <!-- </button> -->
@@ -16,7 +16,7 @@
           <view class="lab_list_item_text">
             <text class="id" style='display:none'>{{item.id}}</text>
             <text class="title">{{item.title}}</text>
-            <text class="description">{{item.description}}</text>
+            <!-- <text class="description">{{item.description}}</text> -->
           </view>
           <view class="check_text">
             前往查看

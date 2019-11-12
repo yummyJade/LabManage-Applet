@@ -1,0 +1,5 @@
+<!--pages/successpage/successpage.wxml-->
+<view class="container">
+  <icon type="success" size="80"></icon>
+  <view style="margin-top:20px">成功提交申请</view>
+</view>

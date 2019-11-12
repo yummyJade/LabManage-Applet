@@ -1,0 +1,51 @@
+<!--pages/shoppingcart/shoppingcart.wxml-->
+<view class='container'>
+  <view class='mainer'>
+    <checkbox-group>
+      <!-- <label class="checkbox" wx:for="{{array}}"> -->
+      <view wx:if="{{!IsHasData}}"class='nodata'>购物车空空如也</view>
+        <view wx:for="{{array}}" wx:key="{{item.id}}">
+          <view class="instrument_list" data-index="{{index}}" >
+          
+          <view class="instrument_list_item">
+            <view class='checkbox_wrap'>
+              <checkbox checked="{{item.checked}}" value="{{item.id}}"  data-index="{{index}}"  bindtap="instrumentboxChange"  />
+            </view>
+            <view class="instrument_list_item_text">
+              <text class="id none">{{item.id}}</text>
+              
+              <text class="title">{{item.name}}</text>
+              <view class="description">
+                <text>编号：{{item.model_number}}</text>
+                <text class='block'>仪器类型：{{item.type}}</text>
+                <text class='block'>制造商：{{item.maker}}</text>
+                <text>所属实验室：{{item.lab_id}}</text>
+                <!-- <text>剩余数量：{{item.number}}</text> -->
+                <view class="check_text">
+            
+                  <text wx:if="{{!item.is_lend}}" class='block rentstatus_ok'>状态：可租借</text>
+                  <text wx:if="{{item.is_lend}}" class='block rentstatus_nok'>状态：不可租借</text>
+
+                </view>
+              </view>
+              
+              <text class='none lab_id'>{{item.lab_id}}</text>
+            </view>
+            
+            <button class='deletebutton' bindtap='deleteInstruments'  data-index="{{index}}" >删除</button>
+          </view>
+        </view>
+        </view>
+      <!-- </label> -->
+      
+    </checkbox-group>
+    
+    <view wx:if="{{IsAll}}" class='hasAll'>已经到底啦！</view>
+  </view>
+  <view class='choosebutton'>
+   <!-- <view bindtap='deleteInstruments' class='deletebutton'>删除</view> -->
+   <view bindtap='chooseInstruments' class='appointbutton'>预约仪器</view>
+   
+  </view>
+  
+</view>

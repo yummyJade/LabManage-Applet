@@ -2,37 +2,42 @@
 //获取应用实例
 const app = getApp()
 let page = 1;
-let ip = 'http://47.100.178.113:3389';
+let ip = app.globalData.ip;
 Page({
   data: {
     IsSearchData: true,
-    labName: "",
     array: [
      
 
-    ]
+    ],
+    id:'',
+    inputdata:'',
+    IsAll:false
+  },
+  //点击弹出新窗口
+  toSearchPage: function (e) {
+    wx.navigateTo({
+      url: '../search/search?inputName=' + this.data.inputdata
+    })
+
+    //有可能需要把现在输入框的内容再传递到搜索页
+
   },
   //事件处理函数
   labClick: function (e) {
     let id = e.currentTarget.dataset.id;
-    // console.log(id);
+    console.log(id);
     wx.navigateTo({
-      url: '../labs/labs?id=' + id,
+      url: '../instruwithid/instruwithid?id=' + id,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
     })
   },
-  //输入实验室名字触发
-  labInput: function (e) {
-    this.setData({
-      labName: e.detail.value
-    })
-  },
   //搜索功能触发
   searchClick: function (e) {
     let that = this;
-    let content = this.data.labName;
+    let content = this.data.inputdata;
     //获得结果
     wx.request({
       url: ip + '/user/FindLabWithName?name=' + content, // 仅为示例，并非真实的接口地址
@@ -84,10 +89,12 @@ Page({
     })
 
   },
-  getLabList: function ({ head_id, number, id }) {
+
+  //获取实验室默认列表
+  getLabList: function ({ page:page }) {
     let that = this;
     wx.request({
-      url: ip + '/user/LabList?head_id=' + head_id + '&' + 'number=' + number + '&id=' + id, // 仅为示例，并非真实的接口地址
+      url: ip + '/user/LabPage?page=' + page + '&id=' + this.data.id, // 仅为示例，并非真实的接口地址
       data: {
 
       },
@@ -102,11 +109,11 @@ Page({
           wx.showLoading({
             title: '玩命加载中',
           })
-          for (let i = 0, len = res.data.labs.length; i < len; i++) {
+          for (let i = 0, len = res.data.result.length; i < len; i++) {
             obj = {
-              id: res.data.labs[i].id,
-              title: res.data.labs[i].name,
-              description: res.data.labs[i].department_id
+              id: res.data.result[i].id,
+              title: res.data.result[i].name,
+              description: res.data.result[i].department_id
 
             }
             array_list.push(obj);
@@ -118,24 +125,29 @@ Page({
           // 隐藏加载框
           wx.hideLoading();
 
+        } else if (res.data.statu == 0 && res.data.msg == "该页内容为空") {
+          that.setData({
+            page: that.data.page - 1,
+            IsAll: true
+          })
+
+
+      
         }
       }
     })
   },
-  onLoad: function (configs) {
-    let id = configs.id;
+  onLoad: function () {
 
-
-    //前面都是什么
-    let number = 5;
-    let head_id = (page - 1) * number + 0;
+    
     //初始化实验室情况
-    let obj = {
-      head_id: head_id,
-      number: number,
-      id: id
-    }
-    this.getLabList(obj);
+
+      let obj = {
+        page: page
+      }
+      this.getLabList(obj);
+    
+    
 
 
 
@@ -149,14 +161,11 @@ Page({
   },
   onReachBottom: function () {
     page = page + 1;
-    let number = 5;
-    let head_id = (page - 1) * number + 0;
-    // let that = this;
+
 
     //初始化实验室情况
     let obj = {
-      head_id: head_id,
-      number: number
+      page: page
     }
     this.getLabList(obj);
 
@@ -164,18 +173,11 @@ Page({
 
   onPullDownRefresh: function () {
     page = 1;
-    // wx.showToast({
-    //   title: '已经是最新啦',
-    //   icon: 'none',
-    //   duration: 2000
-    // })
-    let number = 5;
-    let head_id = (page - 1) * number + 0;
+
 
     //初始化实验室情况
     let obj = {
-      head_id: head_id,
-      number: number
+      page:page
     }
     this.getLabList(obj);
 

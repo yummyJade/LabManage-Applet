@@ -1,1 +1,27 @@
 /* pages/appointForm/appointForm.wxss */
+@import "../../utils/colorui/main.wxss";
+/* @import "../../utils/colorui/icon.wxss"; */
+.container{
+  padding: 0px;
+  display: block;
+}
+.cu-form-group textarea{
+  height: 9em;
+}
+
+.submitbutton{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #405F7F;
+  color: white;
+  
+  height:90rpx;
+  line-height:94rpx;
+  text-align:center;
+  border-radius: 0;
+}
+.cu-form-group{
+  /* background-color: rgb(241,241,241); */
+}

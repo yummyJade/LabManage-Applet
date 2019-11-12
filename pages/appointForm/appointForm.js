@@ -1,6 +1,7 @@
 // pages/appointForm/appointForm.js
 import WxValidate from '../../utils/WxValidate.js';
-let ip = 'http://47.100.178.113:3389';
+const app = getApp();
+let ip = app.globalData.ip;
 Page({
 
   /**
@@ -16,9 +17,9 @@ Page({
   },
   formSubmit:function(e){
     const params = e.detail.value
+    let that = this;
 
-      console.log(params)
-
+    // console.log(e);
       // 传入表单数据，调用验证方法
       if (!this.WxValidate.checkForm(params)) {
           const error = this.WxValidate.errorList[0]
@@ -26,32 +27,93 @@ Page({
           return false
       }
 
+    wx.showLoading({
+      title: '订单提交中',
+    })
 
-
-    let str;
-    for(let i = 0, m = this.data.ids.length; i < m; i++){
+    let str = "";
+    for(let i = 0, m = this.data.ids.length - 1; i < m; i++){
       str += this.data.ids[i] + ' ';
     }
+    str += this.data.ids[this.data.ids.length - 1];
+   
     wx.request({
-      url: ip +'/user/ApplyInstrument',
-      method:'POST',
-      data: {
-        email: this.data.email,
-        title: this.data.title,
-        text: this.data.text,
-        instrument_id:''
-      },
+      method: 'POST',
+      dataType: 'json',
       header: {
-        'content-type': 'application/json' // 默认值
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      url: ip +'/user/ApplyInstrument',
+     
+      data: {
+        email: params.tel,
+        text: params.verifycontent,
+        name: params.name,
+        instrument_id:str,
+        openId:app.globalData.code,
+        formId:e.detail.formId
       },
       success(res) {
-        if(res.data.status == 1){
-
+          console.log(res)
+      
+        if(res.data.statu == 1){
+          wx.hideLoading();
           wx.showToast({
             title: '预约提交成功!',
             icon: 'none',
             duration: 2000
           })
+          
+          let array3 = [];
+          let promise = new Promise((resolve, reject) => {
+            //操作对应的数组减去已经预约的仪器
+            let array1 = app.globalData.insarray;
+            let array2 = that.data.ids;
+            
+            array1.forEach((a) => {
+              let c = array2.findIndex(b => a.id === b);
+              if (c > -1) delete array2[c];
+              else array3.push(a);
+            });
+            app.globalData.insarray = array3;
+           
+            resolve();
+          })
+          promise.then(() => {
+            
+            //回到上一页并传参
+            let pages = getCurrentPages();
+            let prevPage = pages[pages.length - 2];
+            prevPage.setData({
+              array: array3,
+              CheckSum:0
+            })
+            // wx.navigateBack({
+            //   delta: 1,
+            // })
+   
+            //好的先不回上一页
+            wx.redirectTo({
+              url: '../successpage/successpage',
+             
+            })
+            
+          })
+          .catch(() => {
+            wx.showToast({
+              title: '提交失败',
+              icon: 'none',
+              image: '',
+              duration: 0,
+              mask: true,
+              success: function(res) {},
+              fail: function(res) {},
+              complete: function(res) {},
+            })
+          })
+          
+
+ 
         }
       }
     })
@@ -68,26 +130,55 @@ Page({
     /**
      * 4-2(配置规则)
      */
+    // email: {
+    //   required: true,
+    //     email: true
+    // },
+    // verifytitle: {
+    //   required: false,
+    //     minlength: 1
+    // },
+
+    // 不需要的rule
     const rules = {
       name: {
         required: true,
-        rangelength: [2, 4]
+        rangelength: [2, 30]
       },
-      email:{
-        required:true,
-        email: true
+      tel: {
+        required: true,
+        tel: true,
+      },
+
+      
+      verifycontent:{
+        required:false,
+        rangelength: [1, 300]
       }
     }
     // 验证字段的提示信息，若不传则调用默认的信息
     const messages = {
       name: {
-        required: '请输入姓名',
-        rangelength: '请输入2~4个汉字',
+        required: '请输入姓名与申请单位',
+        rangelength: '请输入姓名与申请单位',
       },
       email: {
         required: '请输入邮箱',
         email: '请输入正确的邮箱',
       },
+      tel: {
+        required: '请输入11位手机号码',
+        tel: '请输入正确的手机号码',
+      },
+      verifytitle:{
+        required:'请输入申请标题',
+        minlength:'请输入申请标题'
+      },
+      verifycontent:{
+        required: '请输入备注',
+        rangelength: '请输入备注',
+     
+      }
   
     }
     // 创建实例对象
@@ -120,6 +211,7 @@ Page({
     })
   },
   handleReasonChange: function (e) {
+    // console.log(e.detail.value)
     this.setData({
       reason: e.detail.value
     })
@@ -133,6 +225,7 @@ Page({
       ids : JSON.parse(options.id)
     })
     this.initValidate();
+   
   
 
 

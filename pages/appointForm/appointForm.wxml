@@ -1,25 +1,43 @@
 <!--pages/appointForm/appointForm.wxml-->
-<form bindsubmit="formSubmit" bindreset="formReset">
-  <view class="section">
-  <view class="section__title" >申请人</view>
-    <input name="input" placeholder="例：小明" bindinput="handleNameChange" name="name"/>
-  </view>
-  <view class="section">
+<view class='container'>
+<form bindsubmit="formSubmit" bindreset="formReset" report-submit="true" >
+  <!-- <view class="section">
+  <view class="section__title" >申请单位</view>
+    <input name="input" placeholder="例：哈医大卫生检验中心" bindinput="handleNameChange" name="name" />
+  </view> -->
+  <!-- <view class="section">
     <view class="section__title" >联系方式</view>
     <input name="input" placeholder="例：example@126.com" bindinput="handleChatChange" name="email" />
-  </view>
-    <view class="section">
+  </view> -->
+    <!-- <view class="section">
+    <view class="section__title" >联系方式</view>
+    <input name="input" placeholder="例：136xxxxxxxx" bindinput="handleChatChange" name="tel" />
+  </view> -->
+    <!-- <view class="section">
     <view class="section__title" >申请标题</view>
-    <input name="input" bindinput="handleTitleChange" name="verifytitle"/>
-  </view>
-  <view class="section" >
-    <view class="" bindinput="handleReasonChange" name="verifycontent" >申请理由</view>
-    <textarea>
+    <input name="input" bindinput="handleTitleChange" name="verifytitle" />
+  </view> -->
+  <!-- <view class="section" >
+    <view class="" bindinput="handleReasonChange"  >申请理由</view>
+    <textarea name="verifycontent">
     </textarea>
-  </view>
+  </view> -->
   
-
+  <view class="cu-form-group margin-top">
+		<view class="title">申请人</view>
+		<input placeholder="请输入申请单位+申请人" bindinput="handleNameChange" name="name"></input>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">联系方式</view>
+		<input placeholder="请输入联系电话" bindinput="handleChatChange" name="tel"></input>
+	</view>
+  <view class="cu-form-group align-start">
+		<view class="title">备注</view>
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" bindinput="handleReasonChange" name="verifycontent" placeholder="" value="1.课题名称：\n2.实验项目：\n3.实验性质(教学/科研/开发)：\n4.预计使用时间："></textarea>
+	</view>
   <view class="btn-area">
-    <button form-type="submit" >Submit</button>
+    <button form-type="submit" class='submitbutton' value='提交' >提交申请</button>
   </view>
 </form>
+
+</view>

@@ -1,0 +1,12 @@
+<!--pages/search/search.wxml-->
+
+<view class='container'>
+  <view class="search_instrument_wrap">
+    <label class="search_instrument_inner">
+       <input class="search_instrument_input" placeholder="请输入搜索内容" bindinput='instrumentInput' bindconfirm="searchClick" focus='true' value='{{inputName}}'></input>
+       <image src="../../pages/images/search_button.png"></image>
+    </label>
+
+   
+  </view>
+</view>

@@ -8,3 +8,9 @@
   box-sizing: border-box;
   padding-top: 50rpx;
 } 
+
+.nodata{
+  text-align: center;
+  margin-top: 100rpx;
+  color:#757373;
+}

@@ -1,15 +1,15 @@
 <!--pages/instruwithid/instruwithid.wxml-->
 <view class="container">
   <view class="search_instrument_wrap">
-    <label class="search_instrument_inner">
+    <!-- <label class="search_instrument_inner">
        <input class="search_instrument_input" placeholder="请输入搜索内容" bindinput='instrumentInput' bindconfirm="searchClick"></input>
        <image src="../../pages/images/search_button.png"></image>
-    </label>
+    </label> -->
 
    
     <!-- </button> -->
   </view>
-  <checkbox-group bindchange="instrumentboxChange" >
+  <checkbox-group  >
     <!-- <label class="checkbox" wx:for="{{array}}"> -->
     <view wx:if="{{!IsSearchData}}"class='nodata'>没有搜索到相关结果</view>
       <view wx:for="{{array}}" wx:key="{{item.id}}">
@@ -17,7 +17,7 @@
         
         <view class="instrument_list_item">
           <view class='checkbox_wrap'>
-            <checkbox value="{{item.title}}" checked="{{item.checked}}" value="{{item.id}}"/>
+            <checkbox checked="{{item.checked}}" value="{{item.index}}" data-index="{{index}}"  bindtap="instrumentboxChange" />
           </view>
           <view class="instrument_list_item_text">
             <text class="id none">{{item.id}}</text>
@@ -35,21 +35,13 @@
           </view>
           <view class="check_text">
            
-            <text wx:if="{{item.is_lend}}" class='block rentstatus_ok'>状态：可租借</text>
-            <text wx:if="{{!item.is_lend}}" class='block rentstatus_nok'>状态：不可租借</text>
-            <text wx:if="{{item.is_lend}}" class='block'> 前往租借</text>
+            <text wx:if="{{!item.is_lend}}" class='block rentstatus_ok'>状态：可租借</text>
+            <text wx:if="{{item.is_lend}}" class='block rentstatus_nok'>状态：不可租借</text>
+            <text wx:if="{{item.hasAdd}}" class='block'>已选取</text>
+            <!-- <text wx:if="{{item.is_lend}}" class='block'> 前往租借</text> -->
            
           </view>
-          <!-- <view class="amount_wrap">
-            <view class='left_arrow' bindtap='leftArrowHandle' data-index="{{index}}">
-              <image src="../../pages/images/left_arrow2.png" mode='widthFix'></image>
-            </view>
-            <input value="{{item.num}}"></input>
-            <view class='right_arrow' bindtap='rightArrowHandle' data-index="{{index}}">
-              <image src="../../pages/images/right_arrow2.png" mode='widthFix'></image>
-            </view>
-          </view> -->
-          <!-- <image src="../../pages/images/appointment_logo.png"></image> -->
+          
         </view>
       </view>
       </view>
@@ -58,5 +50,5 @@
   </checkbox-group>  
    
     <!-- buttons -->
-    <button bindtap='chooseInstruments'>选择仪器</button>
+    <view bindtap='chooseInstruments' class="choosebutton">选择仪器</view>
 </view>

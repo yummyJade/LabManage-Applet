@@ -1,4 +1,5 @@
-/* pages/labs/labs.wxss */
+/* pages/shoppingcart/shoppingcart.wxss */
+
 .container{
   display: block;
   /* padding-bottom: 50rpx; */
@@ -160,7 +161,26 @@ checkbox{
 
 
 }
+/* .deletebutton{
+  width: 375rpx;
+  float: right;
+  text-align: center;
+  background-color: white;
+  color: black;
+} */
+.appointbutton{
+  /* width: 375rpx; */
+  /* float: left; */
+  text-align:center;
+}
 
 .mainer{
   margin-bottom: 118rpx;
+}
+.deletebutton{
+  width: 130rpx;
+  /* float: right; */
+  text-align: center;
+  background-color: #405F7F;
+  color: white;
 }
